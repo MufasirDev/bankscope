@@ -1,7 +1,6 @@
 <template>
   <div class="home">
 
-    <!-- Navbar -->
     <nav class="navbar">
       <div class="logo">
         Bank<span>Scope</span>
@@ -25,7 +24,6 @@
     </nav>
 
 
-    <!-- Hero Section -->
     <section class="hero">
 
       <div class="hero-content">
@@ -85,7 +83,7 @@
       </div>
 
 
-      <!-- Dashboard Preview -->
+
       <div class="dashboard-preview">
 
         <div class="preview-header">
@@ -193,7 +191,7 @@
     </section>
 
 
-    <!-- Features -->
+
     <section
       id="features"
       class="features"
@@ -356,7 +354,6 @@
     </section>
 
 
-    <!-- About -->
     <section
       id="about"
       class="about"
@@ -384,7 +381,7 @@
     </section>
 
 
-    <!-- CTA -->
+
     <section class="cta">
 
       <h2>
@@ -403,7 +400,6 @@
     </section>
 
 
-    <!-- Footer -->
     <footer>
 
       <div class="footer-logo">
@@ -527,7 +523,7 @@ function scrollToFeatures() {
 }
 
 
-/* HERO */
+
 
 .hero {
   max-width: 1200px;
@@ -616,7 +612,7 @@ function scrollToFeatures() {
 }
 
 
-/* DASHBOARD PREVIEW */
+
 
 .dashboard-preview {
   background: white;
@@ -767,7 +763,6 @@ function scrollToFeatures() {
 }
 
 
-/* GENERAL SECTIONS */
 
 .features,
 .how-it-works {
@@ -799,7 +794,6 @@ function scrollToFeatures() {
 }
 
 
-/* FEATURES */
 
 .feature-grid {
   display: grid;
@@ -842,7 +836,6 @@ function scrollToFeatures() {
 }
 
 
-/* STEPS */
 
 .steps {
   display: grid;
@@ -885,7 +878,6 @@ function scrollToFeatures() {
 }
 
 
-/* ABOUT */
 
 .about {
   max-width: 1000px;
@@ -918,8 +910,6 @@ function scrollToFeatures() {
 }
 
 
-/* CTA */
-
 .cta {
   text-align: center;
 
@@ -942,7 +932,6 @@ function scrollToFeatures() {
 }
 
 
-/* FOOTER */
 
 footer {
   padding: 35px 7%;
@@ -967,7 +956,6 @@ footer p {
 }
 
 
-/* MOBILE */
 
 @media (max-width: 900px) {
 

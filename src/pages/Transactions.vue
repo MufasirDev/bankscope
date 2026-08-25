@@ -41,6 +41,7 @@
 </template>
 
 <script setup>
+import Navbar from '../components/Navbar.vue'
 import { ref, computed } from 'vue'
 
 const search = ref('')

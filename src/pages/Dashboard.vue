@@ -3,7 +3,7 @@
 
   <div class="dashboard">
 
-    <!-- Header -->
+
     <header class="top">
       <div>
         <p class="welcome">Welcome back 👋</p>
@@ -15,7 +15,7 @@
       </button>
     </header>
 
-    <!-- Connected Bank -->
+
     <section v-if="connectedBank" class="account-card">
 
       <div class="account-header">
@@ -57,7 +57,7 @@
 
     </section>
 
-    <!-- No Bank -->
+
     <section v-else class="empty-state">
 
       <h2>No bank connected yet</h2>
@@ -73,7 +73,7 @@
 
     </section>
 
-    <!-- Statistics -->
+
     <section class="stats">
 
       <div class="stat-card">
@@ -102,7 +102,6 @@
 
     </section>
 
-    <!-- Recent Transactions -->
     <section class="transactions">
 
       <div class="section-title">
@@ -225,7 +224,7 @@ function viewTransactions() {
 }
 
 
-/* Header */
+
 
 .top {
   display: flex;
@@ -257,7 +256,6 @@ function viewTransactions() {
 }
 
 
-/* Account */
 
 .account-card {
   background: #102a43;
@@ -302,7 +300,6 @@ function viewTransactions() {
 }
 
 
-/* Balance */
 
 .balance-section {
   margin: 45px 0 30px;
@@ -319,7 +316,6 @@ function viewTransactions() {
 }
 
 
-/* Account Details */
 
 .account-details {
   display: flex;
@@ -338,7 +334,6 @@ function viewTransactions() {
 }
 
 
-/* Empty */
 
 .empty-state {
   background: white;
@@ -354,7 +349,6 @@ function viewTransactions() {
 }
 
 
-/* Statistics */
 
 .stats {
   display: grid;
@@ -384,7 +378,6 @@ function viewTransactions() {
 }
 
 
-/* Transactions */
 
 .transactions {
   background: white;
@@ -428,7 +421,6 @@ function viewTransactions() {
 }
 
 
-/* Mobile */
 
 @media (max-width: 768px) {
 

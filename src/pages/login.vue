@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
 
-    <!-- Left side -->
+
     <div class="login-info">
       <div class="brand">
         Bank<span>Scope</span>
@@ -46,7 +46,7 @@
     </div>
 
 
-    <!-- Right side -->
+
     <div class="login-section">
 
       <div class="login-card">
@@ -66,7 +66,7 @@
         </p>
 
 
-        <!-- Login form -->
+    
         <form @submit.prevent="login">
 
           <div class="form-group">
@@ -209,7 +209,6 @@ function login() {
   }
 
 
-  // Demo login
   localStorage.setItem(
     'bankscopeUser',
     JSON.stringify({
@@ -260,7 +259,7 @@ function createAccount() {
 }
 
 
-/* LEFT SIDE */
+
 
 .login-info {
   background: #102a43;
@@ -337,7 +336,7 @@ function createAccount() {
 }
 
 
-/* RIGHT SIDE */
+
 
 .login-section {
   display: flex;
@@ -387,7 +386,6 @@ function createAccount() {
 }
 
 
-/* FORM */
 
 .form-group {
   margin-bottom: 22px;
@@ -457,7 +455,7 @@ function createAccount() {
 }
 
 
-/* REMEMBER */
+
 
 .remember {
   margin: 5px 0 20px;
@@ -477,7 +475,6 @@ function createAccount() {
 }
 
 
-/* ERROR */
 
 .error {
   background: #fff1f2;
@@ -489,7 +486,6 @@ function createAccount() {
 }
 
 
-/* LOGIN BUTTON */
 
 .login-button {
   width: 100%;
@@ -508,7 +504,7 @@ function createAccount() {
 }
 
 
-/* DIVIDER */
+
 
 .divider {
   display: flex;
@@ -528,7 +524,6 @@ function createAccount() {
 }
 
 
-/* DEMO */
 
 .demo-box {
   background: #f0f4ff;
@@ -548,7 +543,6 @@ function createAccount() {
 }
 
 
-/* SIGNUP */
 
 .signup {
   text-align: center;
@@ -566,7 +560,6 @@ function createAccount() {
 }
 
 
-/* MOBILE */
 
 @media (max-width: 850px) {
 

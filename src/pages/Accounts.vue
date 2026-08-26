@@ -1,33 +1,23 @@
 <template>
   <div class="accounts-page">
-
     <div class="page-header">
       <div>
-        <p class="brand">BankScope</p>
+        <p class="brand">FinView</p>
         <h1>My Accounts</h1>
         <p>Manage all your connected bank accounts.</p>
       </div>
 
-      <button @click="connectBank">
-        + Connect Bank
-      </button>
+      <button @click="connectBank">+ Connect Bank</button>
     </div>
 
     <div v-if="accounts.length" class="accounts-grid">
-
-      <div
-        v-for="account in accounts"
-        :key="account.name"
-        class="account-card"
-      >
+      <div v-for="account in accounts" :key="account.name" class="account-card">
         <div class="account-top">
           <div class="bank-logo">
             {{ account.shortName }}
           </div>
 
-          <span class="connected">
-            ● Connected
-          </span>
+          <span class="connected"> ● Connected </span>
         </div>
 
         <h2>{{ account.name }}</h2>
@@ -36,9 +26,7 @@
 
         <div class="balance">
           <span>Available Balance</span>
-          <strong>
-            ₦{{ account.balance.toLocaleString() }}.00
-          </strong>
+          <strong> ₦{{ account.balance.toLocaleString() }}.00 </strong>
         </div>
 
         <div class="account-number">
@@ -46,14 +34,10 @@
           <strong>{{ account.number }}</strong>
         </div>
 
-        <button
-          class="disconnect"
-          @click="disconnectAccount(account.name)"
-        >
+        <button class="disconnect" @click="disconnectAccount(account.name)">
           Disconnect
         </button>
       </div>
-
     </div>
 
     <div v-else class="empty">
@@ -61,36 +45,26 @@
 
       <h2>No bank connected</h2>
 
-      <p>
-        Connect your bank to see your account information here.
-      </p>
+      <p>Connect your bank to see your account information here.</p>
 
-      <button @click="connectBank">
-        Connect Your First Bank
-      </button>
+      <button @click="connectBank">Connect Your First Bank</button>
     </div>
-
   </div>
 </template>
 
-
 <script setup>
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+const router = useRouter();
 
-const router = useRouter()
-
-const accounts = ref([])
-
+const accounts = ref([]);
 
 onMounted(() => {
-
-  const savedBank = localStorage.getItem('connectedBank')
+  const savedBank = localStorage.getItem("connectedBank");
 
   if (savedBank) {
-
-    const bank = JSON.parse(savedBank)
+    const bank = JSON.parse(savedBank);
 
     accounts.value = [
       {
@@ -98,40 +72,30 @@ onMounted(() => {
         shortName: bank.shortName,
         type: bank.type,
         balance: 2450000,
-        number: '**** 4821'
-      }
-    ]
-
+        number: "**** 4821",
+      },
+    ];
   }
-
-})
-
+});
 
 function connectBank() {
-  router.push('/connect-bank')
+  router.push("/connect-bank");
 }
-
 
 function disconnectAccount(name) {
-
-  const confirmDisconnect =
-    confirm(`Disconnect ${name} from BankScope?`)
+  const confirmDisconnect = confirm(`Disconnect ${name} from FinView?`);
 
   if (!confirmDisconnect) {
-    return
+    return;
   }
 
-  localStorage.removeItem('connectedBank')
+  localStorage.removeItem("connectedBank");
 
-  accounts.value = []
-
+  accounts.value = [];
 }
-
 </script>
 
-
 <style scoped>
-
 .accounts-page {
   min-height: 100vh;
   background: #f6f8fc;
@@ -181,7 +145,7 @@ h1 {
   background: white;
   padding: 28px;
   border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(16, 42, 67, .06);
+  box-shadow: 0 8px 30px rgba(16, 42, 67, 0.06);
 }
 
 .account-top {
@@ -276,7 +240,6 @@ h1 {
 }
 
 @media (max-width: 700px) {
-
   .accounts-page {
     padding: 30px 20px;
   }
@@ -290,7 +253,5 @@ h1 {
   .accounts-grid {
     grid-template-columns: 1fr;
   }
-
 }
-
 </style>

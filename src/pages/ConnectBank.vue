@@ -1,25 +1,17 @@
 <template>
   <div class="connect-page">
-
     <div class="connect-card">
-
-      <button class="back" @click="goDashboard">
-        ← Back to Dashboard
-      </button>
+      <button class="back" @click="goDashboard">← Back to Dashboard</button>
 
       <div class="header">
         <div class="icon">🏦</div>
 
         <h1>Connect your bank</h1>
 
-        <p>
-          Select your bank to securely connect your
-          account to BankScope.
-        </p>
+        <p>Select your bank to securely connect your account to FinView.</p>
       </div>
 
       <div class="banks">
-
         <button
           v-for="bank in banks"
           :key="bank.name"
@@ -27,7 +19,6 @@
           :class="{ selected: selectedBank?.name === bank.name }"
           @click="selectBank(bank)"
         >
-
           <div class="bank-logo">
             {{ bank.shortName }}
           </div>
@@ -37,123 +28,94 @@
             <span>{{ bank.type }}</span>
           </div>
 
-          <div
-            v-if="selectedBank?.name === bank.name"
-            class="check"
-          >
-            ✓
-          </div>
-
+          <div v-if="selectedBank?.name === bank.name" class="check">✓</div>
         </button>
-
       </div>
-
 
       <button
         class="connect-button"
         :disabled="!selectedBank"
         @click="connectBank"
       >
-        {{ selectedBank
-          ? `Connect ${selectedBank.name}`
-          : 'Select a bank first'
+        {{
+          selectedBank ? `Connect ${selectedBank.name}` : "Select a bank first"
         }}
       </button>
 
       <p class="security">
-        🔒 Your banking information is protected.
-        BankScope does not store your banking password.
+        🔒 Your banking information is protected. FinView does not store your
+        banking password.
       </p>
-
     </div>
-
   </div>
 </template>
 
-
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+const router = useRouter();
 
-const router = useRouter()
-
-const selectedBank = ref(null)
+const selectedBank = ref(null);
 
 const banks = [
   {
-    name: 'OPay',
-    shortName: 'OP',
-    type: 'Digital Bank'
+    name: "OPay",
+    shortName: "OP",
+    type: "Digital Bank",
   },
   {
-    name: 'Moniepoint',
-    shortName: 'MP',
-    type: 'Digital Bank'
+    name: "Moniepoint",
+    shortName: "MP",
+    type: "Digital Bank",
   },
   {
-    name: 'Kuda',
-    shortName: 'KU',
-    type: 'Digital Bank'
+    name: "Kuda",
+    shortName: "KU",
+    type: "Digital Bank",
   },
   {
-    name: 'Summit Bank',
-    shortName: 'SB',
-    type: 'Commercial Bank'
+    name: "Summit Bank",
+    shortName: "SB",
+    type: "Commercial Bank",
   },
   {
-    name: 'GTBank',
-    shortName: 'GT',
-    type: 'Commercial Bank'
+    name: "GTBank",
+    shortName: "GT",
+    type: "Commercial Bank",
   },
   {
-    name: 'Zenith Bank',
-    shortName: 'ZB',
-    type: 'Commercial Bank'
+    name: "Zenith Bank",
+    shortName: "ZB",
+    type: "Commercial Bank",
   },
   {
-    name: 'UBA',
-    shortName: 'UBA',
-    type: 'Commercial Bank'
-  }
-   
-]
-
+    name: "UBA",
+    shortName: "UBA",
+    type: "Commercial Bank",
+  },
+];
 
 function selectBank(bank) {
-
-  selectedBank.value = bank
-
+  selectedBank.value = bank;
 }
-
 
 function connectBank() {
-
   if (!selectedBank.value) {
-    return
+    return;
   }
 
-  localStorage.setItem(
-    'connectedBank',
-    JSON.stringify(selectedBank.value)
-  )
+  localStorage.setItem("connectedBank", JSON.stringify(selectedBank.value));
 
-  router.push('/dashboard')
-
+  router.push("/dashboard");
 }
-
 
 function goDashboard() {
-
-  router.push('/dashboard')
-
+  router.push("/dashboard");
 }
-
 </script>
 
-
 <style scoped>
-
 .connect-page {
   min-height: 100vh;
   background: #f7f9fc;
@@ -223,8 +185,6 @@ function goDashboard() {
 
   line-height: 1.6;
 }
-
-
 
 .banks {
   margin-top: 35px;
@@ -320,8 +280,6 @@ function goDashboard() {
   justify-content: center;
 }
 
-
-
 .connect-button {
   width: 100%;
 
@@ -350,8 +308,6 @@ function goDashboard() {
   cursor: not-allowed;
 }
 
-
-
 .security {
   text-align: center;
 
@@ -362,10 +318,7 @@ function goDashboard() {
   margin-top: 20px;
 }
 
-
-
 @media (max-width: 600px) {
-
   .connect-card {
     padding: 25px 18px;
   }
@@ -373,7 +326,5 @@ function goDashboard() {
   .banks {
     grid-template-columns: 1fr;
   }
-
 }
-
 </style>

@@ -1,41 +1,31 @@
 <template>
   <nav class="navbar">
-    <div class="logo">
-      BankScope
-    </div>
+    <div class="logo">FinView</div>
 
     <div class="nav-links">
-      <button @click="goTo('/dashboard')">
-        Dashboard
-      </button>
+      <button @click="goTo('/dashboard')">Dashboard</button>
 
-      <button @click="goTo('/accounts')">
-        Accounts
-      </button>
+      <button @click="goTo('/accounts')">Accounts</button>
 
-      <button @click="goTo('/transactions')">
-        Transactions
-      </button>
+      <button @click="goTo('/transactions')">Transactions</button>
     </div>
 
-    <button class="logout" @click="logout">
-      Logout
-    </button>
+    <button class="logout" @click="logout">Logout</button>
   </nav>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
 function goTo(path) {
-  router.push(path)
+  router.push(path);
 }
 
 function logout() {
-  localStorage.removeItem('connectedBank')
-  router.push('/login')
+  localStorage.removeItem("connectedBank");
+  router.push("/login");
 }
 </script>
 

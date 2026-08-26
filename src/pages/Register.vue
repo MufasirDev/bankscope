@@ -1,14 +1,11 @@
 <template>
   <div class="register-page">
-
     <div class="register-card">
+      <h1>Create your FinView Account</h1>
 
-      <h1>Create your BankScope Account</h1>
-
-      <p>Join BankScope and manage your finances in one place.</p>
+      <p>Join FinView FinView your finances in one place.</p>
 
       <form @submit.prevent="register">
-
         <input
           v-model="fullName"
           type="text"
@@ -23,12 +20,7 @@
           required
         />
 
-        <input
-          v-model="phone"
-          type="tel"
-          placeholder="Phone Number"
-          required
-        />
+        <input v-model="phone" type="tel" placeholder="Phone Number" required />
 
         <input
           v-model="password"
@@ -45,10 +37,7 @@
         />
 
         <label class="terms">
-          <input
-            v-model="acceptedTerms"
-            type="checkbox"
-          />
+          <input v-model="acceptedTerms" type="checkbox" />
           I agree to the Terms & Conditions
         </label>
 
@@ -56,93 +45,70 @@
           {{ errorMessage }}
         </p>
 
-        <button type="submit">
-          Create Account
-        </button>
-
+        <button type="submit">Create Account</button>
       </form>
 
       <p class="login-text">
         Already have an account?
 
-        <button
-          type="button"
-          class="login-button"
-          @click="goToLogin"
-        >
+        <button type="button" class="login-button" @click="goToLogin">
           Sign in
         </button>
       </p>
-
     </div>
-
   </div>
 </template>
 
-
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+const router = useRouter();
 
-const router = useRouter()
+const fullName = ref("");
+const email = ref("");
+const phone = ref("");
+const password = ref("");
+const confirmPassword = ref("");
+const acceptedTerms = ref(false);
 
-const fullName = ref('')
-const email = ref('')
-const phone = ref('')
-const password = ref('')
-const confirmPassword = ref('')
-const acceptedTerms = ref(false)
-
-const errorMessage = ref('')
-
+const errorMessage = ref("");
 
 function register() {
-
-  errorMessage.value = ''
+  errorMessage.value = "";
 
   if (password.value.length < 4) {
-    errorMessage.value =
-      'Password must contain at least 4 characters.'
-    return
+    errorMessage.value = "Password must contain at least 4 characters.";
+    return;
   }
 
   if (password.value !== confirmPassword.value) {
-    errorMessage.value =
-      'Passwords do not match.'
-    return
+    errorMessage.value = "Passwords do not match.";
+    return;
   }
 
   if (!acceptedTerms.value) {
-    errorMessage.value =
-      'Please accept the Terms & Conditions.'
-    return
+    errorMessage.value = "Please accept the Terms & Conditions.";
+    return;
   }
 
   const user = {
     fullName: fullName.value,
     email: email.value,
-    phone: phone.value
-  }
+    phone: phone.value,
+  };
 
-  localStorage.setItem(
-    'bankscopeUser',
-    JSON.stringify(user)
-  )
+  localStorage.setItem("FinViewUser", JSON.stringify(user));
 
-  router.push('/dashboard')
+  router.push("/dashboard");
 }
-
 
 function goToLogin() {
-  router.push('/login')
+  router.push("/login");
 }
-
 </script>
 
-
 <style scoped>
-
 .register-page {
   min-height: 100vh;
   display: flex;
@@ -160,8 +126,7 @@ function goToLogin() {
   border-radius: 15px;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
 }
-
-h1 {
+FinViFinView {
   color: #102a43;
   margin-bottom: 10px;
 }
@@ -240,5 +205,4 @@ form button[type="submit"]:hover {
   font-weight: bold;
   cursor: pointer;
 }
-
 </style>

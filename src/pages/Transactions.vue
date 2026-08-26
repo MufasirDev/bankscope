@@ -1,22 +1,16 @@
 <template>
   <div class="transactions-page">
-
     <div class="page-header">
       <div>
-        <p class="welcome">BankScope</p>
+        <p class="welcome">FinView</p>
         <h1>Transactions</h1>
-        <p class="subtitle">
-          View and manage your recent banking activity.
-        </p>
+        <p class="subtitle">View and manage your recent banking activity.</p>
       </div>
 
-      <button class="back-btn" @click="goDashboard">
-        ← Dashboard
-      </button>
+      <button class="back-btn" @click="goDashboard">← Dashboard</button>
     </div>
 
     <div class="summary">
-
       <div class="summary-card">
         <span>Total Income</span>
         <strong>₦850,000</strong>
@@ -31,11 +25,9 @@
         <span>Transactions</span>
         <strong>{{ filteredTransactions.length }}</strong>
       </div>
-
     </div>
 
     <div class="filters">
-
       <input
         v-model="search"
         type="text"
@@ -47,10 +39,8 @@
         <option value="Income">Income</option>
         <option value="Expense">Expenses</option>
       </select>
-
     </div>
     <div class="transaction-card">
-
       <div class="transaction-header">
         <h2>Recent Transactions</h2>
         <span>{{ filteredTransactions.length }} records</span>
@@ -61,154 +51,127 @@
         :key="transaction.id"
         class="transaction"
       >
-
         <div class="transaction-icon">
           {{ transaction.icon }}
         </div>
 
         <div class="transaction-info">
           <strong>{{ transaction.description }}</strong>
-          <span>
-            {{ transaction.date }} · {{ transaction.bank }}
-          </span>
+          <span> {{ transaction.date }} · {{ transaction.bank }} </span>
         </div>
 
-        <div
-          class="transaction-amount"
-          :class="transaction.type.toLowerCase()"
-        >
-          {{ transaction.type === 'Income' ? '+' : '-' }}
+        <div class="transaction-amount" :class="transaction.type.toLowerCase()">
+          {{ transaction.type === "Income" ? "+" : "-" }}
           ₦{{ transaction.amount.toLocaleString() }}
         </div>
-
       </div>
 
-      <div
-        v-if="filteredTransactions.length === 0"
-        class="empty"
-      >
+      <div v-if="filteredTransactions.length === 0" class="empty">
         No transactions found.
       </div>
-
     </div>
-
   </div>
 </template>
 
-
 <script setup>
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+const router = useRouter();
 
-const router = useRouter()
-
-const search = ref('')
-const typeFilter = ref('All')
+const search = ref("");
+const typeFilter = ref("All");
 
 const transactions = ref([
   {
     id: 1,
-    description: 'Transfer from Ahmed',
-    date: '26 Aug 2026',
-    bank: 'Moniepoint',
-    type: 'Income',
+    description: "Transfer from Ahmed",
+    date: "26 Aug 2026",
+    bank: "Moniepoint",
+    type: "Income",
     amount: 50000,
-    icon: '↗️'
+    icon: "↗️",
   },
   {
     id: 2,
-    description: 'Netflix Subscription',
-    date: '25 Aug 2026',
-    bank: 'Moniepoint',
-    type: 'Expense',
+    description: "Netflix Subscription",
+    date: "25 Aug 2026",
+    bank: "Moniepoint",
+    type: "Expense",
     amount: 8500,
-    icon: '🎬'
+    icon: "🎬",
   },
   {
     id: 3,
-    description: 'Salary Payment',
-    date: '24 Aug 2026',
-    bank: 'Moniepoint',
-    type: 'Income',
+    description: "Salary Payment",
+    date: "24 Aug 2026",
+    bank: "Moniepoint",
+    type: "Income",
     amount: 300000,
-    icon: '💰'
+    icon: "💰",
   },
   {
     id: 4,
-    description: 'Electricity Bill',
-    date: '23 Aug 2026',
-    bank: 'Moniepoint',
-    type: 'Expense',
+    description: "Electricity Bill",
+    date: "23 Aug 2026",
+    bank: "Moniepoint",
+    type: "Expense",
     amount: 25000,
-    icon: '⚡'
+    icon: "⚡",
   },
   {
     id: 5,
-    description: 'Transfer to John',
-    date: '22 Aug 2026',
-    bank: 'Moniepoint',
-    type: 'Expense',
+    description: "Transfer to John",
+    date: "22 Aug 2026",
+    bank: "Moniepoint",
+    type: "Expense",
     amount: 75000,
-    icon: '↙️'
+    icon: "↙️",
   },
   {
     id: 6,
-    description: 'Cashback',
-    date: '21 Aug 2026',
-    bank: 'Moniepoint',
-    type: 'Income',
+    description: "Cashback",
+    date: "21 Aug 2026",
+    bank: "Moniepoint",
+    type: "Income",
     amount: 15000,
-    icon: '🎁'
+    icon: "🎁",
   },
   {
     id: 7,
-    description: 'Airtime Purchase',
-    date: '20 Aug 2026',
-    bank: 'Moniepoint',
-    type: 'Expense',
+    description: "Airtime Purchase",
+    date: "20 Aug 2026",
+    bank: "Moniepoint",
+    type: "Expense",
     amount: 5000,
-    icon: '📱'
-  }
-])
-
+    icon: "📱",
+  },
+]);
 
 const filteredTransactions = computed(() => {
-
-  return transactions.value.filter(transaction => {
-
-    const matchesSearch =
-      transaction.description
-        .toLowerCase()
-        .includes(search.value.toLowerCase())
+  return transactions.value.filter((transaction) => {
+    const matchesSearch = transaction.description
+      .toLowerCase()
+      .includes(search.value.toLowerCase());
 
     const matchesType =
-      typeFilter.value === 'All' ||
-      transaction.type === typeFilter.value
+      typeFilter.value === "All" || transaction.type === typeFilter.value;
 
-    return matchesSearch && matchesType
-
-  })
-
-})
-
+    return matchesSearch && matchesType;
+  });
+});
 
 function goDashboard() {
-  router.push('/dashboard')
+  router.push("/dashboard");
 }
-
 </script>
 
-
 <style scoped>
-
 .transactions-page {
   min-height: 100vh;
   background: #f6f8fc;
   padding: 45px 7%;
 }
-
-
 
 .page-header {
   display: flex;
@@ -243,8 +206,6 @@ h1 {
   cursor: pointer;
 }
 
-
-
 .summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -256,7 +217,7 @@ h1 {
   background: white;
   padding: 25px;
   border-radius: 14px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.04);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
 }
 
 .summary-card span {
@@ -269,8 +230,6 @@ h1 {
   font-size: 24px;
   color: #102a43;
 }
-
-
 
 .filters {
   display: flex;
@@ -290,8 +249,6 @@ h1 {
 .filters input {
   flex: 1;
 }
-
-
 
 .transaction-card {
   background: white;
@@ -367,10 +324,7 @@ h1 {
   color: #829ab1;
 }
 
-
-
 @media (max-width: 700px) {
-
   .transactions-page {
     padding: 30px 20px;
   }
@@ -395,7 +349,5 @@ h1 {
   .transaction-amount {
     font-size: 13px;
   }
-
 }
-
 </style>

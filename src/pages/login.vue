@@ -1,16 +1,10 @@
 <template>
   <div class="login-page">
-
-
     <div class="login-info">
-      <div class="brand">
-        Bank<span>Scope</span>
-      </div>
+      <div class="brand">Fin<span>View</span></div>
 
       <div class="info-content">
-        <div class="secure-badge">
-          🔐 Secure Open Banking
-        </div>
+        <div class="secure-badge">🔐 Secure Open Banking</div>
 
         <h1>
           Your financial world,
@@ -18,8 +12,8 @@
         </h1>
 
         <p>
-          Securely connect your bank accounts and manage
-          your finances from one simple dashboard.
+          Securely connect your bank accounts and manage your finances from one
+          simple dashboard.
         </p>
 
         <div class="benefits">
@@ -40,35 +34,20 @@
         </div>
       </div>
 
-      <p class="copyright">
-        © 2026 BankScope
-      </p>
+      <p class="copyright">© 2026 FinView</p>
     </div>
 
-
-
     <div class="login-section">
-
       <div class="login-card">
+        <button class="back-btn" @click="goHome">← Back to home</button>
 
-        <button class="back-btn" @click="goHome">
-          ← Back to home
-        </button>
-
-        <div class="mobile-logo">
-          Bank<span>Scope</span>
-        </div>
+        <div clFinViewle-logo">Fin<span>View</span></div>
 
         <h2>Welcome back</h2>
 
-        <p class="subtitle">
-          Sign in to access your financial dashboard.
-        </p>
+        <p class="subtitle">Sign in to access your financial dashboard.</p>
 
-
-    
         <form @submit.prevent="login">
-
           <div class="form-group">
             <label>Email address</label>
 
@@ -80,22 +59,16 @@
             />
           </div>
 
-
           <div class="form-group">
             <div class="password-label">
               <label>Password</label>
 
-              <button
-                type="button"
-                class="forgot"
-                @click="forgotPassword"
-              >
+              <button type="button" class="forgot" @click="forgotPassword">
                 Forgot password?
               </button>
             </div>
 
             <div class="password-input">
-
               <input
                 v-model="password"
                 :type="showPassword ? 'text' : 'password'"
@@ -108,158 +81,104 @@
                 class="show-btn"
                 @click="showPassword = !showPassword"
               >
-                {{ showPassword ? 'Hide' : 'Show' }}
+                {{ showPassword ? "Hide" : "Show" }}
               </button>
-
             </div>
           </div>
 
-
           <div class="remember">
             <label>
-              <input
-                v-model="rememberMe"
-                type="checkbox"
-              />
+              <input v-model="rememberMe" type="checkbox" />
 
               Remember me
             </label>
           </div>
 
-
           <p v-if="errorMessage" class="error">
             {{ errorMessage }}
           </p>
 
-
-          <button
-            type="submit"
-            class="login-button"
-          >
-            Sign In →
-          </button>
-
+          <button type="submit" class="login-button">Sign In →</button>
         </form>
-
 
         <div class="divider">
           <span>OR</span>
         </div>
 
-
         <div class="demo-box">
           <strong>Demo Account</strong>
 
-          <p>
-            Use any valid email and a password with
-            at least 4 characters.
-          </p>
+          <p>Use any valid email and a password with at least 4 characters.</p>
         </div>
-
 
         <p class="signup">
           Don't have an account?
 
-          <button @click="createAccount">
-            Create one
-          </button>
+          <button @click="createAccount">Create one</button>
         </p>
-
       </div>
-
     </div>
-
   </div>
 </template>
 
-
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+const router = useRouter();
 
-const router = useRouter()
-
-const email = ref('')
-const password = ref('')
-const rememberMe = ref(false)
-const showPassword = ref(false)
-const errorMessage = ref('')
-
+const email = ref("");
+const password = ref("");
+const rememberMe = ref(false);
+const showPassword = ref(false);
+const errorMessage = ref("");
 
 function login() {
-
-  errorMessage.value = ''
+  errorMessage.value = "";
 
   if (!email.value || !password.value) {
+    errorMessage.value = "Please enter your email and password.";
 
-    errorMessage.value =
-      'Please enter your email and password.'
-
-    return
+    return;
   }
-
 
   if (password.value.length < 4) {
+    errorMessage.value = "Password must contain at least 4 characters.";
 
-    errorMessage.value =
-      'Password must contain at least 4 characters.'
-
-    return
+    return;
   }
 
-
   localStorage.setItem(
-    'bankscopeUser',
+    "FinViewUser",
     JSON.stringify({
       email: email.value,
-      rememberMe: rememberMe.value
-    })
-  )
+      rememberMe: rememberMe.value,
+    }),
+  );
 
-
-  router.push('/dashboard')
+  router.push("/dashboard");
 }
-
 
 function goHome() {
-
-  router.push('/')
-
+  router.push("/");
 }
-
 
 function forgotPassword() {
-
-  alert(
-    'Password recovery will be added later.'
-  )
-
+  alert("Password recovery will be added later.");
 }
-
 
 function createAccount() {
-
-  alert(
-    router.push('/register')
-  )
-
+  alert(router.push("/register"));
 }
-
 </script>
 
-
 <style scoped>
-
 .login-page {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: #f7f9fc;
 }
-
-
-
 
 .login-info {
   background: #102a43;
@@ -287,12 +206,11 @@ function createAccount() {
   display: inline-block;
   padding: 8px 14px;
   border-radius: 30px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   font-size: 13px;
   margin-bottom: 25px;
 }
-
-.info-content h1 {
+FinView .info-content h1 {
   font-size: 50px;
   line-height: 1.1;
   margin: 0 0 25px;
@@ -334,9 +252,6 @@ function createAccount() {
   color: #829ab1;
   font-size: 13px;
 }
-
-
-
 
 .login-section {
   display: flex;
@@ -385,8 +300,6 @@ function createAccount() {
   margin: 10px 0 35px;
 }
 
-
-
 .form-group {
   margin-bottom: 22px;
 }
@@ -412,7 +325,7 @@ function createAccount() {
 
 .form-group input:focus {
   border-color: #1261ff;
-  box-shadow: 0 0 0 3px rgba(18,97,255,0.08);
+  box-shadow: 0 0 0 3px rgba(18, 97, 255, 0.08);
 }
 
 .password-label {
@@ -454,9 +367,6 @@ function createAccount() {
   font-weight: 600;
 }
 
-
-
-
 .remember {
   margin: 5px 0 20px;
 }
@@ -474,8 +384,6 @@ function createAccount() {
   height: 16px;
 }
 
-
-
 .error {
   background: #fff1f2;
   color: #dc2626;
@@ -484,8 +392,6 @@ function createAccount() {
   font-size: 14px;
   margin-bottom: 15px;
 }
-
-
 
 .login-button {
   width: 100%;
@@ -503,9 +409,6 @@ function createAccount() {
   background: #0b52df;
 }
 
-
-
-
 .divider {
   display: flex;
   align-items: center;
@@ -517,13 +420,11 @@ function createAccount() {
 
 .divider::before,
 .divider::after {
-  content: '';
+  content: "";
   height: 1px;
   background: #e5e7eb;
   flex: 1;
 }
-
-
 
 .demo-box {
   background: #f0f4ff;
@@ -542,8 +443,6 @@ function createAccount() {
   margin: 7px 0 0;
 }
 
-
-
 .signup {
   text-align: center;
   color: #829ab1;
@@ -559,10 +458,7 @@ function createAccount() {
   cursor: pointer;
 }
 
-
-
 @media (max-width: 850px) {
-
   .login-page {
     grid-template-columns: 1fr;
   }
@@ -579,7 +475,5 @@ function createAccount() {
     min-height: 100vh;
     padding: 30px 7%;
   }
-
 }
-
 </style>

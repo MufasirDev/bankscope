@@ -1,10 +1,7 @@
 <template>
   <div class="home">
-
     <nav class="navbar">
-      <div class="logo">
-        Bank<span>Scope</span>
-      </div>
+      <div class="logo">Fin<span>View</span></div>
 
       <div class="nav-links">
         <a href="#features">Features</a>
@@ -13,24 +10,15 @@
       </div>
 
       <div class="nav-buttons">
-        <button class="login-btn" @click="goToLogin">
-          Login
-        </button>
+        <button class="login-btn" @click="goToLogin">Login</button>
 
-        <button class="get-started" @click="goToLogin">
-          Get Started
-        </button>
+        <button class="get-started" @click="goToLogin">Get Started</button>
       </div>
     </nav>
 
-
     <section class="hero">
-
       <div class="hero-content">
-
-        <div class="badge">
-          🔐 Secure Open Banking
-        </div>
+        <div class="badge">🔐 Secure Open Banking</div>
 
         <h1>
           All Your Banks.
@@ -38,31 +26,20 @@
         </h1>
 
         <p>
-          BankScope brings your bank accounts together in one
-          secure platform. Track your balances, transactions,
-          spending and finances from one simple dashboard.
+          FinView brings your bank accounts together in one secure platform.
+          Track your balances, transactions, spending and finances from one
+          simple dashboard.
         </p>
 
         <div class="hero-buttons">
+          <button class="primary-btn" @click="goToLogin">Get Started →</button>
 
-          <button
-            class="primary-btn"
-            @click="goToLogin"
-          >
-            Get Started →
-          </button>
-
-          <button
-            class="secondary-btn"
-            @click="scrollToFeatures"
-          >
+          <button class="secondary-btn" @click="scrollToFeatures">
             Explore Features
           </button>
-
         </div>
 
         <div class="trust">
-
           <div>
             <strong>🔒</strong>
             <span>Secure</span>
@@ -77,40 +54,28 @@
             <strong>🏦</strong>
             <span>Multi-Bank</span>
           </div>
-
         </div>
-
       </div>
 
-
-
       <div class="dashboard-preview">
-
         <div class="preview-header">
           <div>
             <small>Good morning 👋</small>
             <h3>Financial Overview</h3>
           </div>
 
-          <div class="profile-circle">
-            A
-          </div>
+          <div class="profile-circle">A</div>
         </div>
 
-
         <div class="balance-preview">
-
           <small>Total Balance</small>
 
           <h2>₦4,850,000.00</h2>
 
           <p>Across 3 connected accounts</p>
-
         </div>
 
-
         <div class="preview-stats">
-
           <div>
             <small>Income</small>
             <strong>₦850,000</strong>
@@ -120,337 +85,200 @@
             <small>Expenses</small>
             <strong>₦320,500</strong>
           </div>
-
         </div>
 
-
         <div class="preview-transactions">
-
           <div class="preview-title">
             <strong>Recent Transactions</strong>
             <span>View all</span>
           </div>
 
           <div class="preview-transaction">
-
-            <div class="transaction-icon">
-              💰
-            </div>
+            <div class="transaction-icon">💰</div>
 
             <div>
               <strong>Salary</strong>
               <small>Today</small>
             </div>
 
-            <strong class="income">
-              +₦500,000
-            </strong>
-
+            <strong class="income"> +₦500,000 </strong>
           </div>
 
-
           <div class="preview-transaction">
-
-            <div class="transaction-icon">
-              💡
-            </div>
+            <div class="transaction-icon">💡</div>
 
             <div>
               <strong>Electricity</strong>
               <small>Yesterday</small>
             </div>
 
-            <strong class="expense">
-              -₦45,000
-            </strong>
-
+            <strong class="expense"> -₦45,000 </strong>
           </div>
 
-
           <div class="preview-transaction">
-
-            <div class="transaction-icon">
-              ↗️
-            </div>
+            <div class="transaction-icon">↗️</div>
 
             <div>
               <strong>Transfer</strong>
               <small>Yesterday</small>
             </div>
 
-            <strong class="expense">
-              -₦30,000
-            </strong>
-
+            <strong class="expense"> -₦30,000 </strong>
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
-
-    <section
-      id="features"
-      class="features"
-    >
-
+    <section id="features" class="features">
       <div class="section-heading">
+        <p>WHY FinView?</p>
 
-        <p>WHY BANKSCOPE?</p>
-
-        <h2>
-          Your finances, simplified.
-        </h2>
+        <h2>Your finances, simplified.</h2>
 
         <span>
-          Everything you need to understand and manage
-          your money in one place.
+          Everything you need to understand and manage your money in one place.
         </span>
-
       </div>
 
-
       <div class="feature-grid">
-
         <div class="feature-card">
-
-          <div class="feature-icon">
-            🏦
-          </div>
+          <div class="feature-icon">🏦</div>
 
           <h3>Connect Multiple Banks</h3>
 
           <p>
-            Connect your different bank accounts
-            and view them from one dashboard.
+            Connect your different bank accounts and view them from one
+            dashboard.
           </p>
-
         </div>
 
-
         <div class="feature-card">
-
-          <div class="feature-icon">
-            📊
-          </div>
+          <div class="feature-icon">📊</div>
 
           <h3>Track Your Spending</h3>
 
           <p>
-            Understand where your money goes with
-            clear transaction and spending insights.
+            Understand where your money goes with clear transaction and spending
+            insights.
           </p>
-
         </div>
 
-
         <div class="feature-card">
-
-          <div class="feature-icon">
-            🔐
-          </div>
+          <div class="feature-icon">🔐</div>
 
           <h3>Secure & Private</h3>
 
           <p>
-            Your financial information stays protected
-            with secure authentication and consent.
+            Your financial information stays protected with secure
+            authentication and consent.
           </p>
-
         </div>
 
-
         <div class="feature-card">
-
-          <div class="feature-icon">
-            ⚡
-          </div>
+          <div class="feature-icon">⚡</div>
 
           <h3>Real-Time Overview</h3>
 
           <p>
-            Get a clear view of your financial position
-            without switching between different apps.
+            Get a clear view of your financial position without switching
+            between different apps.
           </p>
-
         </div>
-
       </div>
-
     </section>
 
-
     <!-- How It Works -->
-    <section
-      id="how-it-works"
-      class="how-it-works"
-    >
-
+    <section id="how-it-works" class="how-it-works">
       <div class="section-heading">
-
         <p>HOW IT WORKS</p>
 
-        <h2>
-          Start managing your finances in minutes.
-        </h2>
-
+        <h2>Start managing your finances in minutes.</h2>
       </div>
 
-
       <div class="steps">
-
         <div class="step">
-
-          <div class="step-number">
-            01
-          </div>
+          <div class="step-number">01</div>
 
           <h3>Create an Account</h3>
 
-          <p>
-            Sign up and securely access your
-            BankScope dashboard.
-          </p>
-
+          <p>Sign up and securely access your FinView dashboard.</p>
         </div>
 
-
         <div class="step">
-
-          <div class="step-number">
-            02
-          </div>
+          <div class="step-number">02</div>
 
           <h3>Connect Your Bank</h3>
 
           <p>
-            Select your bank and give BankScope
-            permission to access your account information.
+            Select your bank and give FinView permission to access your account
+            information.
           </p>
-
         </div>
 
-
         <div class="step">
-
-          <div class="step-number">
-            03
-          </div>
+          <div class="step-number">03</div>
 
           <h3>Manage Your Money</h3>
 
           <p>
-            View balances, transactions and financial
-            insights from one place.
+            View balances, transactions and financial insights from one place.
           </p>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <section
-      id="about"
-      class="about"
-    >
-
+    <section id="about" class="about">
       <div>
+        <p class="about-label">ABOUT FinView</p>
 
-        <p class="about-label">
-          ABOUT BANKSCOPE
-        </p>
-
-        <h2>
-          One simple view of your financial world.
-        </h2>
-
+        <h2>One simple view of your financial world.</h2>
       </div>
 
       <p>
-        BankScope is an Open Banking platform designed
-        to help users connect their financial accounts
-        and understand their money through a single,
+        FinView is an Open Banking platform designed to help users connect their
+        financial accounts and understand their money through a single,
         easy-to-use interface.
       </p>
-
     </section>
-
-
 
     <section class="cta">
+      <h2>Ready to take control of your finances?</h2>
 
-      <h2>
-        Ready to take control of your finances?
-      </h2>
+      <p>Connect your accounts and get a clearer view of your money.</p>
 
-      <p>
-        Connect your accounts and get a clearer
-        view of your money.
-      </p>
-
-      <button @click="goToLogin">
-        Get Started →
-      </button>
-
+      <button @click="goToLogin">Get Started →</button>
     </section>
 
-
     <footer>
+      <div class="footer-logo">Fin<span>View</span></div>
 
-      <div class="footer-logo">
-        Bank<span>Scope</span>
-      </div>
-
-      <p>
-        © 2026 BankScope. Open Banking made simple.
-      </p>
-
+      <p>© 2026 FinView. Open Banking made simple.</p>
     </footer>
-
   </div>
 </template>
 
-
 <script setup>
+import { useRouter } from "vue-router";
 
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
+const router = useRouter();
 
 function goToLogin() {
-
-  router.push('/login')
-
+  router.push("/login");
 }
-
 
 function scrollToFeatures() {
-
-  document
-    .getElementById('features')
-    ?.scrollIntoView({
-      behavior: 'smooth'
-    })
-
+  document.getElementById("features")?.scrollIntoView({
+    behavior: "smooth",
+  });
 }
-
 </script>
 
-
 <style scoped>
-
 .home {
   min-height: 100vh;
   background: #f8faff;
   color: #102a43;
 }
-
 
 /* NAVBAR */
 
@@ -521,9 +349,6 @@ function scrollToFeatures() {
   background: #1261ff;
   color: white;
 }
-
-
-
 
 .hero {
   max-width: 1200px;
@@ -611,9 +436,6 @@ function scrollToFeatures() {
   font-size: 13px;
 }
 
-
-
-
 .dashboard-preview {
   background: white;
 
@@ -621,8 +443,7 @@ function scrollToFeatures() {
 
   padding: 25px;
 
-  box-shadow:
-    0 25px 60px rgba(16, 42, 67, 0.12);
+  box-shadow: 0 25px 60px rgba(16, 42, 67, 0.12);
 
   border: 1px solid #edf2f7;
 }
@@ -762,8 +583,6 @@ function scrollToFeatures() {
   color: #dc2626;
 }
 
-
-
 .features,
 .how-it-works {
   padding: 90px 7%;
@@ -793,8 +612,6 @@ function scrollToFeatures() {
   color: #627d98;
 }
 
-
-
 .feature-grid {
   display: grid;
 
@@ -818,8 +635,7 @@ function scrollToFeatures() {
 .feature-card:hover {
   transform: translateY(-5px);
 
-  box-shadow:
-    0 15px 35px rgba(16, 42, 67, 0.08);
+  box-shadow: 0 15px 35px rgba(16, 42, 67, 0.08);
 }
 
 .feature-icon {
@@ -834,8 +650,6 @@ function scrollToFeatures() {
   color: #627d98;
   line-height: 1.6;
 }
-
-
 
 .steps {
   display: grid;
@@ -877,8 +691,6 @@ function scrollToFeatures() {
   line-height: 1.6;
 }
 
-
-
 .about {
   max-width: 1000px;
 
@@ -909,7 +721,6 @@ function scrollToFeatures() {
   line-height: 1.8;
 }
 
-
 .cta {
   text-align: center;
 
@@ -930,8 +741,6 @@ function scrollToFeatures() {
   color: white;
   margin-top: 15px;
 }
-
-
 
 footer {
   padding: 35px 7%;
@@ -955,10 +764,7 @@ footer p {
   font-size: 13px;
 }
 
-
-
 @media (max-width: 900px) {
-
   .nav-links {
     display: none;
   }
@@ -984,11 +790,9 @@ footer p {
   .about {
     grid-template-columns: 1fr;
   }
-
 }
 
 @media (max-width: 600px) {
-
   .navbar {
     padding: 0 5%;
   }
@@ -1032,7 +836,5 @@ footer p {
     flex-direction: column;
     gap: 15px;
   }
-
 }
-
 </style>

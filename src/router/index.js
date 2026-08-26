@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Register from '../pages/Register.vue'
+import Transactions from '../pages/Transactions.vue'
+import Accounts from '../pages/Accounts.vue'
+
 const router = createRouter({
   history: createWebHistory(),
 

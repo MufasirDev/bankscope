@@ -97,8 +97,8 @@ const banks = [
     type: 'Digital Bank'
   },
   {
-    name: 'Access Bank',
-    shortName: 'AB',
+    name: 'Summit Bank',
+    shortName: 'SB',
     type: 'Commercial Bank'
   },
   {

@@ -210,6 +210,13 @@ function viewTransactions() {
   router.push('/transactions')
 
 }
+function goTransactions() {
+  router.push('/transactions')
+}
+
+function goAccounts() {
+  router.push('/accounts')
+}
 
 </script>
 

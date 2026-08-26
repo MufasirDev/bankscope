@@ -1,101 +1,78 @@
 <template>
   <div class="connect-page">
-    <div class="header">
-      <button class="back" @click="goBack">← Back</button>
 
-      <div>
-        <h1>Connect a Bank</h1>
-        <p>Choose your bank to securely connect your account.</p>
+    <div class="connect-card">
+
+      <button class="back" @click="goDashboard">
+        ← Back to Dashboard
+      </button>
+
+      <div class="header">
+        <div class="icon">🏦</div>
+
+        <h1>Connect your bank</h1>
+
+        <p>
+          Select your bank to securely connect your
+          account to BankScope.
+        </p>
       </div>
-    </div>
 
-    <div v-if="!selectedBank" class="bank-section">
-      <h2>Select your bank</h2>
+      <div class="banks">
 
-      <div class="bank-grid">
         <button
           v-for="bank in banks"
           :key="bank.name"
-          class="bank-card"
+          class="bank"
+          :class="{ selected: selectedBank?.name === bank.name }"
           @click="selectBank(bank)"
         >
+
           <div class="bank-logo">
             {{ bank.shortName }}
           </div>
 
-          <div>
+          <div class="bank-info">
             <strong>{{ bank.name }}</strong>
-            <p>Connect account</p>
+            <span>{{ bank.type }}</span>
           </div>
 
-          <span>→</span>
-        </button>
-      </div>
-    </div>
+          <div
+            v-if="selectedBank?.name === bank.name"
+            class="check"
+          >
+            ✓
+          </div>
 
-    <div v-else class="consent-card">
-      <button class="back" @click="selectedBank = null">
-        ← Choose another bank
+        </button>
+
+      </div>
+
+
+      <button
+        class="connect-button"
+        :disabled="!selectedBank"
+        @click="connectBank"
+      >
+        {{ selectedBank
+          ? `Connect ${selectedBank.name}`
+          : 'Select a bank first'
+        }}
       </button>
 
-      <div class="selected-bank">
-        <div class="bank-logo">
-          {{ selectedBank.shortName }}
-        </div>
-
-        <div>
-          <h2>{{ selectedBank.name }}</h2>
-          <p>Bank connection</p>
-        </div>
-      </div>
-
-      <hr>
-
-      <h2>Give BankScope access</h2>
-
-      <p class="consent-text">
-        BankScope needs your permission to securely access the following
-        information from your bank:
+      <p class="security">
+        🔒 Your banking information is protected.
+        BankScope does not store your banking password.
       </p>
 
-      <div class="permissions">
-        <div>
-          <span>✓</span>
-          <p>
-            <strong>Account information</strong>
-            <small>Account name and account type</small>
-          </p>
-        </div>
-
-        <div>
-          <span>✓</span>
-          <p>
-            <strong>Account balance</strong>
-            <small>Your available account balance</small>
-          </p>
-        </div>
-
-        <div>
-          <span>✓</span>
-          <p>
-            <strong>Transaction history</strong>
-            <small>Your recent financial transactions</small>
-          </p>
-        </div>
-      </div>
-
-      <div class="security">
-        🔒 Your banking credentials are not stored by BankScope.
-      </div>
-
-      <button class="connect-button" @click="connectAccount">
-        Give Consent & Connect
-      </button>
     </div>
+
   </div>
 </template>
 
+
 <script setup>
+
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -105,196 +82,298 @@ const selectedBank = ref(null)
 
 const banks = [
   {
-    name: 'Bank A',
-    shortName: 'BA'
+    name: 'OPay',
+    shortName: 'OP',
+    type: 'Digital Bank'
   },
   {
-    name: 'Bank B',
-    shortName: 'BB'
+    name: 'Moniepoint',
+    shortName: 'MP',
+    type: 'Digital Bank'
   },
   {
-    name: 'Bank C',
-    shortName: 'BC'
+    name: 'Kuda',
+    shortName: 'KU',
+    type: 'Digital Bank'
   },
   {
-    name: 'Bank D',
-    shortName: 'BD'
+    name: 'Access Bank',
+    shortName: 'AB',
+    type: 'Commercial Bank'
+  },
+  {
+    name: 'GTBank',
+    shortName: 'GT',
+    type: 'Commercial Bank'
+  },
+  {
+    name: 'Zenith Bank',
+    shortName: 'ZB',
+    type: 'Commercial Bank'
+  },
+  {
+    name: 'UBA',
+    shortName: 'UBA',
+    type: 'Commercial Bank'
   }
+   
 ]
 
+
 function selectBank(bank) {
+
   selectedBank.value = bank
+
 }
 
-function connectAccount() {
+
+function connectBank() {
+
+  if (!selectedBank.value) {
+    return
+  }
+
   localStorage.setItem(
     'connectedBank',
     JSON.stringify(selectedBank.value)
   )
 
   router.push('/dashboard')
+
 }
 
-function goBack() {
+
+function goDashboard() {
+
   router.push('/dashboard')
+
 }
+
 </script>
 
+
 <style scoped>
+
 .connect-page {
   min-height: 100vh;
   background: #f7f9fc;
-  padding: 50px 7%;
-  color: #102a43;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 60px 20px;
 }
 
-.header {
-  margin-bottom: 40px;
-}
+.connect-card {
+  width: 100%;
+  max-width: 700px;
 
-.header h1 {
-  margin: 15px 0 5px;
-  font-size: 36px;
-}
+  background: white;
 
-.header p {
-  color: #627d98;
+  padding: 35px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 15px 40px rgba(16, 42, 67, 0.08);
 }
 
 .back {
   border: none;
   background: transparent;
-  color: #1261ff;
+
+  color: #627d98;
+
   cursor: pointer;
-  font-size: 15px;
+
+  margin-bottom: 30px;
 }
 
-.bank-section {
-  max-width: 850px;
+.header {
+  text-align: center;
 }
 
-.bank-section h2 {
-  margin-bottom: 20px;
-}
+.icon {
+  width: 60px;
+  height: 60px;
 
-.bank-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
+  margin: auto;
 
-.bank-card {
-  border: 1px solid #e5e7eb;
-  background: white;
-  padding: 20px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  cursor: pointer;
-  text-align: left;
-}
+  border-radius: 15px;
 
-.bank-card:hover {
-  border-color: #1261ff;
-}
+  background: #eaf0ff;
 
-.bank-card p {
-  margin: 5px 0 0;
-  color: #829ab1;
-  font-size: 14px;
-}
-
-.bank-card span {
-  margin-left: auto;
-  font-size: 20px;
-  color: #1261ff;
-}
-
-.bank-logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: #1261ff;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+
+  font-size: 30px;
 }
 
-.consent-card {
-  max-width: 650px;
-  background: white;
-  padding: 35px;
-  border-radius: 18px;
-  box-shadow: 0 15px 40px rgba(16, 42, 67, 0.08);
+.header h1 {
+  color: #102a43;
+  margin: 18px 0 8px;
 }
 
-.selected-bank {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin: 30px 0;
-}
-
-.selected-bank h2 {
-  margin: 0;
-}
-
-.selected-bank p {
-  margin: 5px 0;
+.header p {
   color: #829ab1;
-}
 
-.consent-text {
-  color: #627d98;
+  max-width: 500px;
+
+  margin: auto;
+
   line-height: 1.6;
 }
 
-.permissions {
-  margin: 25px 0;
+
+
+.banks {
+  margin-top: 35px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
 }
 
-.permissions div {
+.bank {
   display: flex;
-  gap: 15px;
-  align-items: flex-start;
-  margin: 20px 0;
-}
 
-.permissions span {
-  color: #16a34a;
-  font-size: 20px;
-}
+  align-items: center;
 
-.permissions p {
-  margin: 0;
-}
+  gap: 12px;
 
-.permissions small {
-  display: block;
-  color: #829ab1;
-  margin-top: 5px;
-}
-
-.security {
-  background: #f0fdf4;
   padding: 15px;
-  border-radius: 8px;
-  color: #166534;
-  margin: 25px 0;
+
+  background: white;
+
+  border: 1px solid #e1e8f0;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  text-align: left;
 }
+
+.bank:hover {
+  border-color: #1261ff;
+}
+
+.bank.selected {
+  border-color: #1261ff;
+
+  background: #f0f4ff;
+}
+
+.bank-logo {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 10px;
+
+  background: #1261ff;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.bank-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  flex: 1;
+}
+
+.bank-info strong {
+  color: #102a43;
+}
+
+.bank-info span {
+  color: #829ab1;
+
+  font-size: 12px;
+}
+
+.check {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  background: #1261ff;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 .connect-button {
   width: 100%;
+
+  margin-top: 25px;
+
   padding: 15px;
+
   border: none;
+
   border-radius: 9px;
+
   background: #1261ff;
+
   color: white;
-  font-size: 16px;
-  font-weight: 600;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
   cursor: pointer;
 }
+
+.connect-button:disabled {
+  background: #bcccdc;
+
+  cursor: not-allowed;
+}
+
+
+
+.security {
+  text-align: center;
+
+  color: #829ab1;
+
+  font-size: 12px;
+
+  margin-top: 20px;
+}
+
+
+
+@media (max-width: 600px) {
+
+  .connect-card {
+    padding: 25px 18px;
+  }
+
+  .banks {
+    grid-template-columns: 1fr;
+  }
+
+}
+
 </style>

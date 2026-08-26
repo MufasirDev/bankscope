@@ -241,7 +241,7 @@ function forgotPassword() {
 function createAccount() {
 
   alert(
-    'Account registration will be added later.'
+    router.push('/register')
   )
 
 }

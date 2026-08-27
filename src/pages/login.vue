@@ -41,7 +41,7 @@
       <div class="login-card">
         <button class="back-btn" @click="goHome">← Back to home</button>
 
-        <div clFinViewle-logo">Fin<span>View</span></div>
+        <div class="FinView-logo">Fin<span>View</span></div>
 
         <h2>Welcome back</h2>
 

@@ -2,22 +2,16 @@
   <Navbar />
 
   <div class="dashboard">
-
-
     <header class="top">
       <div>
         <p class="welcome">Welcome back 👋</p>
         <h1>Financial Overview</h1>
       </div>
 
-      <button class="connect-btn" @click="connectBank">
-        + Connect Bank
-      </button>
+      <button class="connect-btn" @click="connectBank">+ Connect Bank</button>
     </header>
 
-
     <section v-if="connectedBank" class="account-card">
-
       <div class="account-header">
         <div class="bank-logo">
           {{ connectedBank.shortName }}
@@ -28,9 +22,7 @@
           <h2>{{ connectedBank.name }}</h2>
         </div>
 
-        <span class="status">
-          ● Connected
-        </span>
+        <span class="status"> ● Connected </span>
       </div>
 
       <div class="balance-section">
@@ -54,28 +46,17 @@
           <strong>NGN</strong>
         </div>
       </div>
-
     </section>
-
 
     <section v-else class="empty-state">
-
       <h2>No bank connected yet</h2>
 
-      <p>
-        Connect your bank account to see your balance
-        and transactions.
-      </p>
+      <p>Connect your bank account to see your balance and transactions.</p>
 
-      <button @click="connectBank">
-        Connect Your Bank
-      </button>
-
+      <button @click="connectBank">Connect Your Bank</button>
     </section>
 
-
     <section class="stats">
-
       <div class="stat-card">
         <span>Total Income</span>
 
@@ -99,17 +80,13 @@
 
         <small>This month</small>
       </div>
-
     </section>
 
     <section class="transactions">
-
       <div class="section-title">
         <h2>Recent Transactions</h2>
 
-        <button @click="viewTransactions">
-          View all
-        </button>
+        <button @click="viewTransactions">View all</button>
       </div>
 
       <div
@@ -117,7 +94,6 @@
         :key="transaction.id"
         class="transaction"
       >
-
         <div>
           <strong>{{ transaction.name }}</strong>
 
@@ -128,110 +104,84 @@
           </p>
         </div>
 
-        <strong
-          :class="
-            transaction.type === 'income'
-              ? 'income'
-              : 'expense'
-          "
-        >
-          {{ transaction.type === 'income' ? '+' : '-' }}
+        <strong :class="transaction.type === 'income' ? 'income' : 'expense'">
+          {{ transaction.type === "income" ? "+" : "-" }}
           ₦{{ transaction.amount.toLocaleString() }}
         </strong>
-
       </div>
-
     </section>
-
   </div>
 </template>
 
-
 <script setup>
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import Navbar from "../components/Navbar.vue";
 
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import Navbar from '../components/Navbar.vue'
+const router = useRouter();
 
-const router = useRouter()
-
-const connectedBank = ref(null)
+const connectedBank = ref(null);
 
 const transactions = ref([
   {
     id: 1,
-    name: 'Salary',
-    date: 'Today',
-    category: 'Income',
+    name: "Salary",
+    date: "Today",
+    category: "Income",
     amount: 500000,
-    type: 'income'
+    type: "income",
   },
 
   {
     id: 2,
-    name: 'Electricity Bill',
-    date: 'Yesterday',
-    category: 'Bill Payment',
+    name: "Electricity Bill",
+    date: "Yesterday",
+    category: "Bill Payment",
     amount: 45000,
-    type: 'expense'
+    type: "expense",
   },
 
   {
     id: 3,
-    name: 'Transfer',
-    date: 'Yesterday',
-    category: 'Transfer',
+    name: "Transfer",
+    date: "Yesterday",
+    category: "Transfer",
     amount: 30000,
-    type: 'expense'
-  }
-])
-
+    type: "expense",
+  },
+]);
 
 onMounted(() => {
-
-  const bank = localStorage.getItem('connectedBank')
+  const bank = localStorage.getItem("connectedBank");
 
   if (bank) {
-    connectedBank.value = JSON.parse(bank)
+    connectedBank.value = JSON.parse(bank);
   }
-
-})
-
+});
 
 function connectBank() {
-
-  router.push('/connect-bank')
-
+  router.push("/connect-bank");
 }
-
 
 function viewTransactions() {
-
-  router.push('/transactions')
-
+  router.push("/transactions");
 }
 function goTransactions() {
-  router.push('/transactions')
+  router.push("/transactions");
 }
 
 function goAccounts() {
-  router.push('/accounts')
+  router.push("/accounts");
 }
-
 </script>
 
-
 <style scoped>
-
 .dashboard {
   min-height: 100vh;
   background: #f7f9fc;
   padding: 45px 7%;
   color: #102a43;
 }
-
-
-
 
 .top {
   display: flex;
@@ -250,7 +200,6 @@ function goAccounts() {
   font-size: 32px;
 }
 
-
 .connect-btn,
 .empty-state button {
   border: none;
@@ -261,8 +210,6 @@ function goAccounts() {
   cursor: pointer;
   font-weight: 600;
 }
-
-
 
 .account-card {
   background: #102a43;
@@ -306,8 +253,6 @@ function goAccounts() {
   font-size: 14px;
 }
 
-
-
 .balance-section {
   margin: 45px 0 30px;
 }
@@ -321,8 +266,6 @@ function goAccounts() {
   font-size: 38px;
   margin: 0;
 }
-
-
 
 .account-details {
   display: flex;
@@ -340,8 +283,6 @@ function goAccounts() {
   font-size: 13px;
 }
 
-
-
 .empty-state {
   background: white;
   padding: 50px;
@@ -354,8 +295,6 @@ function goAccounts() {
   color: #627d98;
   margin-bottom: 25px;
 }
-
-
 
 .stats {
   display: grid;
@@ -383,8 +322,6 @@ function goAccounts() {
 .stat-card small {
   color: #829ab1;
 }
-
-
 
 .transactions {
   background: white;
@@ -427,10 +364,7 @@ function goAccounts() {
   color: #dc2626;
 }
 
-
-
 @media (max-width: 768px) {
-
   .top {
     flex-direction: column;
     align-items: flex-start;
@@ -449,7 +383,5 @@ function goAccounts() {
   .account-header {
     flex-wrap: wrap;
   }
-
 }
-
 </style>
